@@ -61,6 +61,7 @@ module.exports = grammar({
       )
     ),
 
+
     /**
      * Statements
      **/
@@ -136,14 +137,16 @@ module.exports = grammar({
           // @ts-ignore
           field('operator', operator),
           field('right', $._expression),
+          optional(field('modifier', $.nocase))
         )),
       ));
     },
 
-    call_expression: $ => prec(PREC.primary, choice(
+    call_expression: $ => prec.left(PREC.primary, choice(
       seq(
         field('function', $.function_expression),
         field('arguments', $.argument_list),
+        optional(field('modifier', $.nocase))
       ),
     )),
 
@@ -185,7 +188,7 @@ module.exports = grammar({
     ),
 
     variable_identifier: $ => seq(
-      '$',
+      choice('$', '#'),
       $.identifier,
       optional(
         field('attribute', $.attribute_identifier)
@@ -215,7 +218,6 @@ module.exports = grammar({
       )),
       token.immediate('"'),
     ),
-
     _interpreted_string_literal_basic_content: _ => token.immediate(prec(1, /[^"\n\\]+/)),
 
     escape_sequence: _ => token.immediate(seq(

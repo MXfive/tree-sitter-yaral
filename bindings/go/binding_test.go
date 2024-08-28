@@ -3,8 +3,8 @@ package tree_sitter_yaral_test
 import (
 	"testing"
 
-	tree_sitter "github.com/smacker/go-tree-sitter"
-	"github.com/MXfive/tree-sitter-yaral"
+	tree_sitter "github.com/tree-sitter/go-tree-sitter"
+	tree_sitter_yaral "github.com/tree-sitter/tree-sitter-yaral/bindings/go"
 )
 
 func TestCanLoadGrammar(t *testing.T) {

@@ -246,6 +246,16 @@
           }
         ]
       },
+      "modifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "nocase",
+            "named": true
+          }
+        ]
+      },
       "operator": {
         "multiple": false,
         "required": true,
@@ -385,6 +395,16 @@
         "types": [
           {
             "type": "function_expression",
+            "named": true
+          }
+        ]
+      },
+      "modifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "nocase",
             "named": true
           }
         ]
@@ -892,6 +912,10 @@
     "named": false
   },
   {
+    "type": "#",
+    "named": false
+  },
+  {
     "type": "$",
     "named": false
   },
@@ -1046,6 +1070,10 @@
   {
     "type": "meta",
     "named": false
+  },
+  {
+    "type": "nocase",
+    "named": true
   },
   {
     "type": "not",

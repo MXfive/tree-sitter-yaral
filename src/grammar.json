@@ -365,6 +365,22 @@
                   "type": "SYMBOL",
                   "name": "_expression"
                 }
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "modifier",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "nocase"
+                    }
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
           }
@@ -407,6 +423,22 @@
                   "type": "SYMBOL",
                   "name": "_expression"
                 }
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "modifier",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "nocase"
+                    }
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
           }
@@ -465,6 +497,22 @@
                   "type": "SYMBOL",
                   "name": "_expression"
                 }
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "modifier",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "nocase"
+                    }
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
           }
@@ -498,6 +546,22 @@
                   "type": "SYMBOL",
                   "name": "_expression"
                 }
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "modifier",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "nocase"
+                    }
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
           }
@@ -531,6 +595,22 @@
                   "type": "SYMBOL",
                   "name": "_expression"
                 }
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "modifier",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "nocase"
+                    }
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
           }
@@ -538,7 +618,7 @@
       ]
     },
     "call_expression": {
-      "type": "PREC",
+      "type": "PREC_LEFT",
       "value": 7,
       "content": {
         "type": "CHOICE",
@@ -561,6 +641,22 @@
                   "type": "SYMBOL",
                   "name": "argument_list"
                 }
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "modifier",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "nocase"
+                    }
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
           }
@@ -793,8 +889,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "$"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "$"
+            },
+            {
+              "type": "STRING",
+              "value": "#"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
