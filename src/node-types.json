@@ -251,7 +251,7 @@
         "required": false,
         "types": [
           {
-            "type": "nocase",
+            "type": "modifier",
             "named": true
           }
         ]
@@ -261,52 +261,12 @@
         "required": true,
         "types": [
           {
-            "type": "!=",
-            "named": false
+            "type": "keyword_operator",
+            "named": true
           },
           {
-            "type": "*",
-            "named": false
-          },
-          {
-            "type": "+",
-            "named": false
-          },
-          {
-            "type": "-",
-            "named": false
-          },
-          {
-            "type": "/",
-            "named": false
-          },
-          {
-            "type": "<",
-            "named": false
-          },
-          {
-            "type": "<=",
-            "named": false
-          },
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": ">",
-            "named": false
-          },
-          {
-            "type": ">=",
-            "named": false
-          },
-          {
-            "type": "and",
-            "named": false
-          },
-          {
-            "type": "or",
-            "named": false
+            "type": "operator",
+            "named": true
           }
         ]
       },
@@ -404,7 +364,7 @@
         "required": false,
         "types": [
           {
-            "type": "nocase",
+            "type": "modifier",
             "named": true
           }
         ]
@@ -612,6 +572,10 @@
       "types": [
         {
           "type": "duration_literal",
+          "named": true
+        },
+        {
+          "type": "keyword_operator",
           "named": true
         },
         {
@@ -867,16 +831,8 @@
         "required": true,
         "types": [
           {
-            "type": "all",
-            "named": false
-          },
-          {
-            "type": "any",
-            "named": false
-          },
-          {
-            "type": "not",
-            "named": false
+            "type": "keyword_operator",
+            "named": true
           }
         ]
       }
@@ -1065,6 +1021,10 @@
     "named": true
   },
   {
+    "type": "keyword_operator",
+    "named": true
+  },
+  {
     "type": "m",
     "named": false
   },
@@ -1077,7 +1037,7 @@
     "named": false
   },
   {
-    "type": "nocase",
+    "type": "modifier",
     "named": true
   },
   {
@@ -1086,6 +1046,10 @@
   },
   {
     "type": "null",
+    "named": true
+  },
+  {
+    "type": "operator",
     "named": true
   },
   {

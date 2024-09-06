@@ -116,18 +116,19 @@ module.exports = grammar({
       $.null,
     ),
 
+
     unary_expression: $ => prec(PREC.unary, seq(
-      field('operator', choice('all', 'any', 'not')),
+      field('operator', alias(choice('all', 'any', 'not'), $.keyword_operator)),
       field('operand', $._expression),
     )),
 
     binary_expression: $ => {
       const table = [
-        [PREC.multiplicative, choice('*', '/')],
-        [PREC.additive, choice('+', '-')],
-        [PREC.comparative, choice('=', '!=', '<', '<=', '>', '>=')],
-        [PREC.and, 'and'],
-        [PREC.or, 'or'],
+        [PREC.multiplicative, alias(choice('*', '/'), $.operator)],
+        [PREC.additive, alias(choice('+', '-'), $.operator)],
+        [PREC.comparative, alias(choice('=', '!=', '<', '<=', '>', '>='), $.operator)],
+        [PREC.and, alias('and', $.keyword_operator)],
+        [PREC.or, alias('or', $.keyword_operator)],
       ];
 
       return choice(...table.map(([precedence, operator]) =>
@@ -137,7 +138,7 @@ module.exports = grammar({
           // @ts-ignore
           field('operator', operator),
           field('right', $._expression),
-          optional(field('modifier', $.nocase))
+          optional(field('modifier', $.modifier))
         )),
       ));
     },
@@ -146,7 +147,7 @@ module.exports = grammar({
       seq(
         field('function', $.function_expression),
         field('arguments', $.argument_list),
-        optional(field('modifier', $.nocase))
+        optional(field('modifier', $.modifier))
       ),
     )),
 
@@ -164,7 +165,7 @@ module.exports = grammar({
       optional(
         seq(
           optional('not'),
-          'over',
+          alias('over', $.keyword_operator),
           $.duration_literal,
           optional(seq(
             choice('before', 'after'),
@@ -277,7 +278,33 @@ module.exports = grammar({
 
     attribute_identifier: _ => /\.[a-zA-Z][a-zA-Z0-9_\.]*/,
 
-    nocase: _ => 'nocase',
+    // Only one modifier in YARA-L 2.0
+    modifier: _ => 'nocase',
+
+
+    keyword_operator: _ => choice(
+      'all',
+      'and',
+      'any',
+      'not',
+      'or',
+      'over',
+    ),
+
+    operator: _ => choice(
+      "*",
+      "/",
+      "+",
+      "-",
+      "=",
+      ">",
+      "=",
+      "!=",
+      "<",
+      "<=",
+      ">",
+      ">=",
+    ),
 
     function_expression: $ => seq(
       field('operand', $.identifier),
