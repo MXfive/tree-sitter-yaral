@@ -719,6 +719,11 @@
     }
   },
   {
+    "type": "regex_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "rule_definition",
     "named": true,
     "fields": {
@@ -1106,10 +1111,6 @@
   {
     "type": "regex",
     "named": false
-  },
-  {
-    "type": "regex_literal",
-    "named": true
   },
   {
     "type": "rule",

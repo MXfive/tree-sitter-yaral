@@ -244,15 +244,25 @@ module.exports = grammar({
       choice('m', 'h', 'd')
     ),
 
-    regex_literal: _ => token(seq(
+    regex_literal: _ => seq(
       '/',
-      /[^/\\\*]/,
-      repeat(choice(
-        /[^/\\]/,
-        seq('\\', /./)
+      token.immediate(prec(-1,
+        repeat1(choice(
+          seq(
+            '[',
+            repeat(choice(
+              seq('\\', /./), // escaped character
+              /[^\]\n\\]/, // any character besides ']' or '\n'
+            )),
+            ']',
+          ), // square-bracket-delimited character class
+          seq('\\', /./), // escaped character
+          /[^/\\\[\n]/, // any character besides '[', '\', '/', '\n'
+        )),
       )),
-      '/'
-    )),
+      token.immediate(prec(1, '/')),
+    ),
+
 
     boolean_literal: _ => choice('true', 'false'),
 
